@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 from sklearn.metrics import classification_report, confusion_matrix
+import os
 
 st.title("ML Assignment 2 – Classification Models")
 
@@ -28,7 +29,10 @@ if uploaded_file:
     X = df.drop("income", axis=1)
     y = df["income"]
 
-    model = joblib.load(f"model/{model_name.replace(' ', '_')}.pkl")
+    current_working_dir = os.getcwd()
+    model_path = os.path.join(current_working_dir, 'model', f"{model_name.replace(' ', '_')}.pkl")
+
+    model = joblib.load(model_path)
 
     y_pred = model.predict(X)
 

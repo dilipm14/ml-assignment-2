@@ -29,8 +29,8 @@ if uploaded_file:
     X = df.drop("income", axis=1)
     y = df["income"]
 
-    current_working_dir = os.getcwd()
-    model_path = os.path.join(current_working_dir, 'model', f"{model_name.replace(' ', '_')}.pkl")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(script_dir, 'model', f"{model_name.replace(' ', '_')}.pkl")
 
     model = joblib.load(model_path)
 
